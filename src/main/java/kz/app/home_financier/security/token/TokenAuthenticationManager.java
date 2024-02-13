@@ -40,10 +40,10 @@ public class TokenAuthenticationManager implements AuthenticationManager {
 
     private TokenAuthentication buildFullTokenAuthentication(TokenAuthentication authentication, String token) {
         DefaultClaims claims = tokenService.getClaimsFromToken(token);
-        if (claims.get(ClaimKeysConstants.IS_REFRESH_TOKEN, Boolean.class)) {
+        if (Boolean.TRUE.equals(claims.get(ClaimKeysConstants.IS_REFRESH_TOKEN, Boolean.class))) {
             throw new AuthenticationServiceException("This is refresh token try access token");
         }
-        UserDetails userDetails = userDetailsService.loadUserByUsername(claims.get(ClaimKeysConstants.ID, String.class));
+        UserDetails userDetails = userDetailsService.loadUserByUsername(claims.get(ClaimKeysConstants.USERNAME, String.class));
         if (!userDetails.isAccountNonLocked()) throw new UserBlockedAccessDeniedException("User is blocked");
 
         return new TokenAuthentication(authentication.getToken(), true, userDetails);

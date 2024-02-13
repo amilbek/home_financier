@@ -12,6 +12,7 @@ import kz.app.home_financier.model.dto.UserDTO;
 import kz.app.home_financier.model.entity.Role;
 import kz.app.home_financier.model.entity.User;
 import kz.app.home_financier.security.token.TokenService;
+import kz.app.home_financier.service.CategoryService;
 import kz.app.home_financier.service.DictionaryService;
 import kz.app.home_financier.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,7 @@ public class AuthFacadeImpl implements AuthFacade {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserMapper userMapper;
     private final TokenService tokenService;
+    private final CategoryService categoryService;
 
     @Override
     public UserDTO signUp(SignUpDTO signUpDTO) {
@@ -58,7 +60,7 @@ public class AuthFacadeImpl implements AuthFacade {
 
     private void checkUserValidations(SignUpDTO signUpDTO) {
         List<String> errors = new ArrayList<>();
-        if (userService.existsUserByEmail(signUpDTO.getEmail())) {
+        if (Boolean.TRUE.equals(userService.existsUserByEmail(signUpDTO.getEmail()))) {
             errors.add(String.valueOf(EMAIL_EXISTS));
         }
         if (!isValidEmail(signUpDTO.getEmail())) {

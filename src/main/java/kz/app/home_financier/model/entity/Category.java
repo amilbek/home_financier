@@ -20,8 +20,8 @@ public class Category {
 
     private Boolean customCategory;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<User> users;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
 
     private Boolean isIncome;
 
