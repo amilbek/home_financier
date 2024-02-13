@@ -1,6 +1,6 @@
 package kz.app.home_financier.model.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import kz.app.home_financier.constants.RoleEnums;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

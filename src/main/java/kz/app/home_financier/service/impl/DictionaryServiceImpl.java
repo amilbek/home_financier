@@ -1,6 +1,6 @@
 package kz.app.home_financier.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import kz.app.home_financier.constants.RoleEnums;
 import kz.app.home_financier.model.entity.Role;
 import kz.app.home_financier.repository.RoleRepository;

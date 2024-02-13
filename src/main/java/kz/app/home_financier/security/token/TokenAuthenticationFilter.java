@@ -1,11 +1,11 @@
 package kz.app.home_financier.security.token;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import kz.app.home_financier.security.token.handler.CustomAuthenticationFailureHandler;
 import kz.app.home_financier.security.token.handler.CustomAuthenticationSuccessHandler;
 import kz.app.home_financier.security.token.handler.LoginRequestMatcher;

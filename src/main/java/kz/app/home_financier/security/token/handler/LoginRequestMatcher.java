@@ -1,6 +1,6 @@
 package kz.app.home_financier.security.token.handler;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 public class LoginRequestMatcher implements RequestMatcher {

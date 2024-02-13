@@ -1,8 +1,8 @@
 package kz.app.home_financier.security.token.handler;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import kz.app.home_financier.model.dto.FailureResponse;
 import kz.app.home_financier.util.BodyWriter;
 import org.springframework.http.HttpStatus;

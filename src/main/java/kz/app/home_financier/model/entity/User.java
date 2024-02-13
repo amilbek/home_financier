@@ -1,8 +1,8 @@
 package kz.app.home_financier.model.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "users")
-@SQLRestriction("deleted_at is false")
+@Where(clause = "deleted_at is null")
 public class User {
 
     @Id

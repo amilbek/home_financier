@@ -3,9 +3,11 @@ package kz.app.home_financier.mapper;
 import kz.app.home_financier.model.dto.UserDTO;
 import kz.app.home_financier.model.entity.Role;
 import kz.app.home_financier.model.entity.User;
+import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
+@Service
 public class UserMapperImpl implements UserMapper {
 
     @Override

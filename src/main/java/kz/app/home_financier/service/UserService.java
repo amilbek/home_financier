@@ -11,4 +11,6 @@ public interface UserService {
     Boolean existsUserByEmail(String email);
 
     User findUserByEmail(String email);
+
+    User getAuth();
 }

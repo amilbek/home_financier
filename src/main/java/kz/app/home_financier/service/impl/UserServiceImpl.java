@@ -1,10 +1,12 @@
 package kz.app.home_financier.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import kz.app.home_financier.model.entity.User;
 import kz.app.home_financier.repository.UserRepository;
+import kz.app.home_financier.security.token.TokenAuthentication;
 import kz.app.home_financier.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,5 +29,11 @@ public class UserServiceImpl implements UserService {
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email " + email));
+    }
+
+    @Override
+    public User getAuth() {
+        TokenAuthentication authentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getUser();
     }
 }
