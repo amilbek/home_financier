@@ -28,6 +28,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public Category findCategoryById(Long id) {
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Category not found with id " + id));
+    }
+
+    @Override
     public List<Category> getIncomeCategoriesByUser(User user) {
         return categoryRepository.findByUserAndIsIncomeIsTrue(user);
     }

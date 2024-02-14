@@ -1,5 +1,6 @@
-package kz.app.home_financier.mapper;
+package kz.app.home_financier.mapper.impl;
 
+import kz.app.home_financier.mapper.UserMapper;
 import kz.app.home_financier.model.dto.UserDTO;
 import kz.app.home_financier.model.entity.Role;
 import kz.app.home_financier.model.entity.User;

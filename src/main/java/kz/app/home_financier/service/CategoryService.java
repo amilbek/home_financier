@@ -13,6 +13,8 @@ public interface CategoryService {
 
     Category findCategoryByName(String category);
 
+    Category findCategoryById(Long id);
+
     List<Category> getIncomeCategoriesByUser(User user);
 
     List<Category> getOutcomeCategoriesByUser(User user);
