@@ -1,6 +1,6 @@
 package kz.app.home_financier.controller;
 
-import kz.app.home_financier.facade.IncomeFacade;
+import kz.app.home_financier.facade.OutcomeFacade;
 import kz.app.home_financier.model.dto.InOutComeCreateDTO;
 import kz.app.home_financier.model.dto.InOutComeDTO;
 import lombok.RequiredArgsConstructor;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/incomes")
+@RequestMapping("/api/v1/outcomes")
 @RequiredArgsConstructor
-public class IncomeController {
+public class OutcomeController {
 
-    private final IncomeFacade incomeFacade;
+    private final OutcomeFacade outcomeFacade;
 
     @PostMapping("/save-income")
     public ResponseEntity<InOutComeDTO> addIncomeCategory(@RequestBody InOutComeCreateDTO inOutComeCreateDTO) {
-        return ResponseEntity.ok(incomeFacade.saveIncome(inOutComeCreateDTO));
+        return ResponseEntity.ok(outcomeFacade.saveOutcome(inOutComeCreateDTO));
     }
 
     @PostMapping("/list")
     public ResponseEntity<List<InOutComeDTO>> addIncomeCategory() {
-        return ResponseEntity.ok(incomeFacade.getAllIncomesByUser());
+        return ResponseEntity.ok(outcomeFacade.getAllOutcomesByUser());
     }
 }
