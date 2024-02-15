@@ -19,7 +19,7 @@ public class OutcomeController {
 
     private final OutcomeFacade outcomeFacade;
 
-    @PostMapping("/save-income")
+    @PostMapping("/save-outcome")
     public ResponseEntity<InOutComeDTO> addIncomeCategory(@RequestBody InOutComeCreateDTO inOutComeCreateDTO) {
         return ResponseEntity.ok(outcomeFacade.saveOutcome(inOutComeCreateDTO));
     }
