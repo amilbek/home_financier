@@ -27,12 +27,12 @@ public class CategoryController {
         return ResponseEntity.ok(categoryFacade.addOutcomeCategory(categoryCreateDTO));
     }
 
-    @GetMapping("/outcome-categories")
+    @GetMapping("/income-categories")
     public ResponseEntity<List<CategoryDTO>> getUserIncomeCategories() {
         return ResponseEntity.ok(categoryFacade.getUserIncomeCategories());
     }
 
-    @GetMapping("/income-categories")
+    @GetMapping("/outcome-categories")
     public ResponseEntity<List<CategoryDTO>> getUserOutcomeCategories() {
         return ResponseEntity.ok(categoryFacade.getUserOutcomeCategories());
     }

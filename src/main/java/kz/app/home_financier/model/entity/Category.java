@@ -4,12 +4,10 @@ import lombok.Data;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
 @Table(name = "categories")
-@Where(clause = "deleted_at is null")
 public class Category {
 
     @Id
