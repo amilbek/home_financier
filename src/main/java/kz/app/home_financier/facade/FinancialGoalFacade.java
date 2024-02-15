@@ -19,6 +19,4 @@ public interface FinancialGoalFacade {
     FinancialGoalDTO saveFinancialGoalHistory(FinancialGoalHistoryCreateDTO financialGoalHistoryCreateDTO);
 
     FinancialGoalDTO getFinancialGoalById(Long financialGoalId);
-
-    FinancialGoalDTO setAchievedGoal(Long id);
 }

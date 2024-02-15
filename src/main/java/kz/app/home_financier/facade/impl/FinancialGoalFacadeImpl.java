@@ -15,6 +15,7 @@ import kz.app.home_financier.util.ModelMapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -73,11 +74,21 @@ public class FinancialGoalFacadeImpl implements FinancialGoalFacade {
         financialGoalHistoryService.save(financialGoalHistory);
 
         FinancialGoalDTO financialGoalDTO = ModelMapperUtil.map(financialGoal, FinancialGoalDTO.class);
-        List<FinancialGoalHistoryDTO> financialGoalHistoryList = financialGoalHistoryService.findHistoryByFinancialGoal(financialGoal)
+        List<FinancialGoalHistory> financialGoalHistoryList = financialGoalHistoryService.findHistoryByFinancialGoal(financialGoal);
+        BigDecimal financialGoalHistorySum = financialGoalHistoryList
+                .stream()
+                .map(FinancialGoalHistory::getSum)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        if (financialGoalHistorySum.compareTo(financialGoal.getSum()) == 0) {
+            financialGoal.setIsAchieved(true);
+        }
+
+        FinancialGoal dbFinancialGoal = financialGoalService.save(financialGoal);
+        List<FinancialGoalHistoryDTO> financialGoalHistoryDTOList = financialGoalHistoryService.findHistoryByFinancialGoal(dbFinancialGoal)
                 .stream()
                 .map(f -> ModelMapperUtil.map(f, FinancialGoalHistoryDTO.class))
                 .collect(Collectors.toList());
-        financialGoalDTO.setFinancialGoalHistoryDTOList(financialGoalHistoryList);
+        financialGoalDTO.setFinancialGoalHistoryDTOList(financialGoalHistoryDTOList);
         return financialGoalDTO;
     }
 
@@ -91,13 +102,5 @@ public class FinancialGoalFacadeImpl implements FinancialGoalFacade {
                 .collect(Collectors.toList());
         financialGoalDTO.setFinancialGoalHistoryDTOList(financialGoalHistoryList);
         return financialGoalDTO;
-    }
-
-    @Override
-    public FinancialGoalDTO setAchievedGoal(Long id) {
-        FinancialGoal financialGoal = financialGoalService.findFinancialGoalById(id);
-        financialGoal.setIsAchieved(true);
-        FinancialGoal dbFinancialGoal = financialGoalService.save(financialGoal);
-        return ModelMapperUtil.map(dbFinancialGoal, FinancialGoalDTO.class);
     }
 }

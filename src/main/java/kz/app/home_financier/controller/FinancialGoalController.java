@@ -37,11 +37,6 @@ public class FinancialGoalController {
         return ResponseEntity.ok(financialGoalFacade.getFinancialGoalById(id));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<FinancialGoalDTO> setAchievedGoal(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(financialGoalFacade.setAchievedGoal(id));
-    }
-
     @PostMapping("/add-history")
     public ResponseEntity<FinancialGoalDTO> addIncomeCategory(@RequestBody FinancialGoalHistoryCreateDTO financialGoalHistoryCreateDTO) {
         return ResponseEntity.ok(financialGoalFacade.saveFinancialGoalHistory(financialGoalHistoryCreateDTO));
