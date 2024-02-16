@@ -25,7 +25,7 @@ public class IncomeController {
     }
 
     @PostMapping("/list")
-    public ResponseEntity<List<InOutComeDTO>> addIncomeCategory() {
+    public ResponseEntity<List<InOutComeDTO>> getIncomes() {
         return ResponseEntity.ok(incomeFacade.getAllIncomesByUser());
     }
 }

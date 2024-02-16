@@ -4,17 +4,17 @@ import kz.app.home_financier.facade.OutcomeFacade;
 import kz.app.home_financier.model.dto.InOutComeCreateDTO;
 import kz.app.home_financier.model.dto.InOutComeDTO;
 import kz.app.home_financier.model.entity.Category;
-import kz.app.home_financier.model.entity.Income;
 import kz.app.home_financier.model.entity.Outcome;
 import kz.app.home_financier.model.entity.User;
 import kz.app.home_financier.service.CategoryService;
-import kz.app.home_financier.service.IncomeService;
 import kz.app.home_financier.service.OutcomeService;
 import kz.app.home_financier.service.UserService;
 import kz.app.home_financier.util.ModelMapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +35,7 @@ public class OutcomeFacadeImpl implements OutcomeFacade {
         outcome.setCategory(category);
         outcome.setComment(inOutComeCreateDTO.getComment());
         outcome.setUser(user);
+        outcome.setCreatedAt(LocalDateTime.now());
         Outcome dbOutcome = outcomeService.save(outcome);
         return ModelMapperUtil.map(dbOutcome, InOutComeDTO.class);
     }
@@ -44,6 +45,7 @@ public class OutcomeFacadeImpl implements OutcomeFacade {
         User user = userService.getAuth();
         return outcomeService.findAllIncomesByUser(user)
                 .stream()
+                .sorted(Comparator.comparing(Outcome::getCreatedAt).reversed())
                 .map(i -> ModelMapperUtil.map(i, InOutComeDTO.class))
                 .collect(Collectors.toList());
     }

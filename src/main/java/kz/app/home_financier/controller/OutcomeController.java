@@ -20,12 +20,12 @@ public class OutcomeController {
     private final OutcomeFacade outcomeFacade;
 
     @PostMapping("/save-outcome")
-    public ResponseEntity<InOutComeDTO> addIncomeCategory(@RequestBody InOutComeCreateDTO inOutComeCreateDTO) {
+    public ResponseEntity<InOutComeDTO> addOutcomeCategory(@RequestBody InOutComeCreateDTO inOutComeCreateDTO) {
         return ResponseEntity.ok(outcomeFacade.saveOutcome(inOutComeCreateDTO));
     }
 
     @PostMapping("/list")
-    public ResponseEntity<List<InOutComeDTO>> addIncomeCategory() {
+    public ResponseEntity<List<InOutComeDTO>> getOutcomes() {
         return ResponseEntity.ok(outcomeFacade.getAllOutcomesByUser());
     }
 }

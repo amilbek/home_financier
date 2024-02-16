@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -23,4 +24,6 @@ public class Income {
 
     @ManyToOne
     private User user;
+
+    private LocalDateTime createdAt;
 }

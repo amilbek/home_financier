@@ -13,6 +13,8 @@ import kz.app.home_financier.util.ModelMapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +35,7 @@ public class IncomeFacadeImpl implements IncomeFacade {
         income.setCategory(category);
         income.setComment(inOutComeCreateDTO.getComment());
         income.setUser(user);
+        income.setCreatedAt(LocalDateTime.now());
         Income dbIncome = incomeService.save(income);
         return ModelMapperUtil.map(dbIncome, InOutComeDTO.class);
     }
@@ -42,6 +45,7 @@ public class IncomeFacadeImpl implements IncomeFacade {
         User user = userService.getAuth();
         return incomeService.findAllIncomesByUser(user)
                 .stream()
+                .sorted(Comparator.comparing(Income::getCreatedAt).reversed())
                 .map(i -> ModelMapperUtil.map(i, InOutComeDTO.class))
                 .collect(Collectors.toList());
     }
