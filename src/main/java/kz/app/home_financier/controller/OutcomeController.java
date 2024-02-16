@@ -22,12 +22,12 @@ public class OutcomeController {
         return ResponseEntity.ok(outcomeFacade.saveOutcome(inOutComeCreateDTO));
     }
 
-    @PutMapping("/edit-income/{id}")
+    @PutMapping("/edit-outcome/{id}")
     public ResponseEntity<InOutComeDTO> updateOutcome(@PathVariable Long id, @RequestBody InOutComeCreateDTO inOutComeCreateDTO) {
         return ResponseEntity.ok(outcomeFacade.updateIncome(id, inOutComeCreateDTO));
     }
 
-    @DeleteMapping("/delete-income/{id}")
+    @DeleteMapping("/delete-outcome/{id}")
     public ResponseEntity<Void> deleteOutcome(@PathVariable Long id) {
         outcomeFacade.deleteIncome(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
