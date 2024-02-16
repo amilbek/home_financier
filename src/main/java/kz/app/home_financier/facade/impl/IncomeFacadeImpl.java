@@ -41,6 +41,24 @@ public class IncomeFacadeImpl implements IncomeFacade {
     }
 
     @Override
+    public void deleteIncome(Long id) {
+        Income income = incomeService.findById(id);
+        income.setDeletedAt(LocalDateTime.now());
+        incomeService.save(income);
+    }
+
+    @Override
+    public InOutComeDTO updateIncome(Long id, InOutComeCreateDTO inOutComeCreateDTO) {
+        Category category = categoryService.findCategoryById(inOutComeCreateDTO.getCategoryId());
+        Income income = incomeService.findById(id);
+        income.setSum(inOutComeCreateDTO.getSum());
+        income.setCategory(category);
+        income.setComment(inOutComeCreateDTO.getComment());
+        Income dbIncome = incomeService.save(income);
+        return ModelMapperUtil.map(dbIncome, InOutComeDTO.class);
+    }
+
+    @Override
     public List<InOutComeDTO> getAllIncomesByUser() {
         User user = userService.getAuth();
         return incomeService.findAllIncomesByUser(user)

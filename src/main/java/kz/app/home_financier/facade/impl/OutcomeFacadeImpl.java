@@ -41,6 +41,24 @@ public class OutcomeFacadeImpl implements OutcomeFacade {
     }
 
     @Override
+    public void deleteIncome(Long id) {
+        Outcome outcome = outcomeService.findById(id);
+        outcome.setDeletedAt(LocalDateTime.now());
+        outcomeService.save(outcome);
+    }
+
+    @Override
+    public InOutComeDTO updateIncome(Long id, InOutComeCreateDTO inOutComeCreateDTO) {
+        Category category = categoryService.findCategoryById(inOutComeCreateDTO.getCategoryId());
+        Outcome outcome = outcomeService.findById(id);
+        outcome.setSum(inOutComeCreateDTO.getSum());
+        outcome.setCategory(category);
+        outcome.setComment(inOutComeCreateDTO.getComment());
+        Outcome dbOutcome = outcomeService.save(outcome);
+        return ModelMapperUtil.map(dbOutcome, InOutComeDTO.class);
+    }
+
+    @Override
     public List<InOutComeDTO> getAllOutcomesByUser() {
         User user = userService.getAuth();
         return outcomeService.findAllIncomesByUser(user)

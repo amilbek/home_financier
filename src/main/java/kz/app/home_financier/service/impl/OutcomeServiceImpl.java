@@ -7,6 +7,7 @@ import kz.app.home_financier.service.OutcomeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -23,5 +24,11 @@ public class OutcomeServiceImpl implements OutcomeService {
     @Override
     public List<Outcome> findAllIncomesByUser(User user) {
         return outcomeRepository.findAllByUser(user);
+    }
+
+    @Override
+    public Outcome findById(Long id) {
+        return outcomeRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("income not found with id " + id));
     }
 }

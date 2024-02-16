@@ -11,5 +11,9 @@ public interface OutcomeFacade {
 
     InOutComeDTO saveOutcome(InOutComeCreateDTO inOutComeCreateDTO);
 
+    InOutComeDTO updateIncome(Long id, InOutComeCreateDTO inOutComeCreateDTO);
+
+    void deleteIncome(Long id);
+
     List<InOutComeDTO> getAllOutcomesByUser();
 }

@@ -12,4 +12,6 @@ public interface IncomeService {
     Income save(Income income);
 
     List<Income> findAllIncomesByUser(User user);
+
+    Income findById(Long id);
 }

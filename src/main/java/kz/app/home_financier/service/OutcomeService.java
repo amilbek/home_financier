@@ -12,4 +12,6 @@ public interface OutcomeService {
     Outcome save(Outcome outcome);
 
     List<Outcome> findAllIncomesByUser(User user);
+
+    Outcome findById(Long id);
 }
