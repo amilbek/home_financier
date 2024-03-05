@@ -36,7 +36,6 @@ public class AuthFacadeImpl implements AuthFacade {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserMapper userMapper;
     private final TokenService tokenService;
-    private final CategoryService categoryService;
 
     @Override
     public UserDTO signUp(SignUpDTO signUpDTO) {

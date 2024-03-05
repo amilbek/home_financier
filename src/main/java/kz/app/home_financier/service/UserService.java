@@ -3,6 +3,8 @@ package kz.app.home_financier.service;
 import kz.app.home_financier.model.entity.User;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public interface UserService {
 
@@ -13,4 +15,6 @@ public interface UserService {
     User findUserByEmail(String email);
 
     User getAuth();
+
+    User findById(UUID userId);
 }

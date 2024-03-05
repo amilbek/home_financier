@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -35,5 +37,11 @@ public class UserServiceImpl implements UserService {
     public User getAuth() {
         TokenAuthentication authentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
         return authentication.getUser();
+    }
+
+    @Override
+    public User findById(UUID userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id " + userId));
     }
 }
