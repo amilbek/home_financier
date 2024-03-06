@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<UserDTO> updateUser(UpdateUserDTO userDTO) {
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UpdateUserDTO userDTO) {
         return ResponseEntity.ok(userFacade.updateUser(userDTO));
     }
 
