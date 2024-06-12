@@ -1,0 +1,24 @@
+yaml
+Копировать код
+language: java
+
+# Specify JDK version
+jdk:
+  - openjdk8
+
+# Use Maven to build the project
+script:
+  - mvn clean install
+
+# Cache Maven dependencies to speed up the build process
+cache:
+  directories:
+    - $HOME/.m2
+
+# Notifications (optional, but recommended)
+notifications:
+  email:
+    recipients:
+      - 231986@astanait.edu.kz
+    on_success: change
+    on_failure: always
